@@ -1,0 +1,46 @@
+{% extends "portpontrieuxBundle::layout.html.twig" %}
+{% block PortPontrieux_body %}
+    <h1>Tableau des tarifs</h1>
+               
+    <table class="table">
+        <thead>
+        <tr>
+           <th>Numero</th>
+           <th>Type</th>
+           <th>Profondeur</th>
+           <th>Prix</th>
+           <th>Disponible ?</th>
+        </tr>
+        </thead>
+        <tbody>
+           {% for emplacement in lesEmplacements %}
+               <tr {# si le nombre de passages dans la boucle est pair #} {% if loop.index is even %} class="success" {% else %} class="info" {% endif %}>
+                   <td>{{emplacement.id}}</td>
+                   <td>{{emplacement.type.situation}}</td>
+                   <td>{{emplacement.type.profondeur}}</td>
+                   <td>{{emplacement.type.prix}}</td>
+                   {% if emplacement.disponible == 1 %}
+                               <td>Oui</td>
+                   {% else %}
+                               <td>Non</td>
+                   {% endif %}
+               </tr>
+           {% endfor %}
+        </tbody>
+      </table>
+       <ul class="pagination">
+          {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+          {% for p in range(1, nbPages) %}
+          <li{% if p == page %} class="active"{% endif %}>
+            <a href="{{ path('portpontrieux_tarifs', {'page': p}) }}">{{ p }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+
+    <script>
+                $(function() {
+                           $('#menu4').attr('class', 'active');
+                });
+    </script>
+           
+{% endblock %}

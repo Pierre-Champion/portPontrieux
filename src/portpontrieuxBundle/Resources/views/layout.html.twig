@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Gestion du port de Pontrieux</title>
+    {# Bloc que l'on pourra éventuellement modifié dans les templates finaux #}
+    {% block styles %}
+     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
+     <script src="{{ asset('js/jquery.js') }}"></script>
+     <script src="{{ asset('js/bootstrap.js') }}"></script>
+     <style>
+                 .carousel-inner > .item > img,
+                 .carousel-inner > .item > a > img
+                 {
+                             width: 70%;
+                             margin: auto;
+                 }
+     </style>
+    {% endblock %}
+  </head>
+           
+{% block body %}
+  {# Ici on va définir une banniere, un titre et un menu commun à toutes les pages du Bunble PortPontrieux #}
+     <nav class="navbar navbar-inverse">
+       <div class="container-fluid">
+         <div class="navbar-header">
+           <a class="navbar-brand" href="#">Port de Pontrieux</a>
+         </div>
+           <ul class="nav navbar-nav">
+             <li id='menu1'><a href="{{ path('portpontrieux_homepage') }}">Accueil</a></li>
+             <li id='menu2'><a href="#">Animation</a></li>
+             <li id='menu3'><a href="#">Annonces</a></li>
+             <li id='menu4'><a href="{{ path('portpontrieux_tarifs') }}">Tarifs</a></li>
+             <li id='menu5' class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gestion des emplacements
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ path('portpontrieux_nouvelEmplacement') }}">Nouvel emplacement</a></li>
+                <li><a href="#">Nouvelle location</a></li>
+              </ul>
+             </li>        
+        </ul>
+       </div>
+     </nav>
+  {# Ici se trouve le bloc que les vues du bundle pourront remplir #}
+  {% block PortPontrieux_body %}
+ 
+  {% endblock %}
+           
+{% endblock %}
